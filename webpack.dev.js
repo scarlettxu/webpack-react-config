@@ -69,7 +69,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/, // 用正则表达式匹配文件格式
-      loaders: ['react-hot', 'babel'], // 加载器类型 react 热替换
+      loaders: ['react-hot', 'babel','eslint-loader'], // 加载器类型 react 热替换
       include: path.join(__dirname, 'src'),
       happy: {
         id: 'js'

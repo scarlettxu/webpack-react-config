@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React, { Component, PropTypes } from 'react';
 
 class App extends Component {
 
@@ -8,8 +7,7 @@ class App extends Component {
       <div>
         {this.props.children}
       </div>
-
-    );
+      );
   }
 }
 
