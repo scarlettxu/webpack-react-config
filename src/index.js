@@ -3,28 +3,28 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { Router, browserHistory } from 'react-router';
 const rootRoute = {
-    path: '/',
-   indexRoute: {
+  path: '/',
+  indexRoute: {
     getComponent(nextState, cb) {
       require.ensure([], (require) => {
-        cb(null, require('./Home').default)
-      }, 'HomePage')
+        cb(null, require('./Home').default);
+      }, 'HomePage');
     },
   },
   getComponent(nextState, cb) {
     require.ensure([], (require) => {
-      cb(null, require('./App').default)
-    }, 'Main')
+      cb(null, require('./App').default);
+    }, 'Main');
   },
-    childRoutes: [
-      require('./Login/routers'),
-      require('./Home/routers'),
-    ]
+  childRoutes: [
+    require('./Login/routers'),
+    require('./Home/routers'),
+  ],
 };
 ReactDOM.render(
   (<Router
-  history={browserHistory}
-  routes={rootRoute}
+    history={browserHistory}
+    routes={rootRoute}
   />),
   document.getElementById('root')
 );
