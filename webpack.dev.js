@@ -13,7 +13,7 @@ module.exports = {
     app: [
       'webpack-dev-server/client?http://localhost:3000', //dev 代码热替换 
       'webpack/hot/only-dev-server', //dev 代码热替换
-      './src/index' // 入口文件
+      './src/main' // 入口文件
     ]
   },
   // 解析路径
@@ -69,7 +69,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/, // 用正则表达式匹配文件格式
-      loaders: ['react-hot', 'babel','eslint-loader'], // 加载器类型 react 热替换
+      loaders: ['react-hot', 'babel'], // 加载器类型 react 热替换
       include: path.join(__dirname, 'src'),
       happy: {
         id: 'js'

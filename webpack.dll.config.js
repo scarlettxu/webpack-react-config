@@ -5,7 +5,10 @@ module.exports = {
     vendor: [ 
     'react', 
     'react-dom',
-    'react-router'
+    'react-router',
+    'superagent',
+    'redux',
+    'react-redux',
         ]
   },
   output:{
