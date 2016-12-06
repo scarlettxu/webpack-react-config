@@ -4,7 +4,7 @@ const rootRoute = {
   indexRoute: {
     getComponent(nextState, cb) {
       require.ensure([], (require) => {
-        cb(null, require('./components/Home').default);
+        cb(null, require('./containers/Home').default);
       }, 'HomePage');
     },
   },
@@ -14,8 +14,8 @@ const rootRoute = {
     }, 'Main');
   },
   childRoutes: [
-    require('./components/Login/routers'),
-    require('./components/Home/routers'),
+    require('./containers/Login/routers'),
+    require('./containers/Home/routers'),
   ],
 };
 export default rootRoute;

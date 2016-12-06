@@ -9,6 +9,7 @@ module.exports = {
     'superagent',
     'redux',
     'react-redux',
+    'moment',
         ]
   },
   output:{
