@@ -21,6 +21,10 @@
 * react-dom
 * react-hot-loader 代码热替换
 * react-router
+* redux 数据管理
+* react-redux
+* superagent 数据请求 
+* moment 时间处理
 * style-loader
 * url-loader
 * webpack
@@ -44,6 +48,6 @@
 ####Plugins
 持续更新webpack 优化插件
 ####Code
-增加redux和服务器端渲染配置文件
+服务器端渲染配置文件
 ####Update
 升级到wepack2 正式版

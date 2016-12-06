@@ -1,3 +1,4 @@
+// 这里封装 superagent ,并且使用Promise,可以前后端同构；
 import superagent from 'superagent';
 export default function requestAPI(path, data, mode = 'GET') {
   return new Promise((reslove, reject) => {
