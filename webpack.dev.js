@@ -1,9 +1,9 @@
-var path = require('path');
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var HappyPack = require('happypack');
-var happyThreadPool = HappyPack.ThreadPool({
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HappyPack = require('happypack');
+const happyThreadPool = HappyPack.ThreadPool({
   size: 8
 }); // webpack2 支持打包css
 module.exports = {

@@ -1,12 +1,12 @@
-var path = require('path');
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CleanPlugin = require('clean-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var HappyPack = require('happypack');
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HappyPack = require('happypack');
 const assetsPath = path.join(__dirname, 'dist');
-var happyThreadPool = HappyPack.ThreadPool({
+const happyThreadPool = HappyPack.ThreadPool({
   size: 8
 }); // webpack2 支持打包css
 
@@ -15,9 +15,8 @@ module.exports = {
   // 程序入口文件，多页面构建
   entry: {
     app: [
-      './src/index' // 入口文件
+      './src/main' // 入口文件
     ]
-
   },
   progress: true,
   // 解析路径
@@ -98,7 +97,7 @@ module.exports = {
     },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader")
       },
       {
         test: /\.svg$/,
