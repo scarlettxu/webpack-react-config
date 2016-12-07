@@ -48,6 +48,7 @@
 ####Plugins
 持续更新webpack 优化插件
 ####Code
+服务器渲染配置
 服务器端渲染配置文件
 ####Update
 升级到wepack2 正式版
