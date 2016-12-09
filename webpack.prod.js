@@ -42,7 +42,13 @@ module.exports = {
     }),
     new HappyPack({
       id: 'js',
-      threadPool: happyThreadPool
+      threadPool: happyThreadPool,
+      loaders: ['react-hot', 'babel?cacheDirectory=true'] // 加载器类型 react 热替换
+    }),
+    new HappyPack({
+      id: 'styles',
+      threadPool: happyThreadPool,
+      loaders: ['css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader']
     }),
     new webpack.DllReferencePlugin({
       context: __dirname,
@@ -89,15 +95,13 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/, // 用正则表达式匹配文件格式
-      loaders: ['babel'], // 加载器类型 react 热替换
+      loaders: ['happypack/loader?id=js'], //多进程打包 
       include: path.join(__dirname, 'src'),
-      happy: {
-        id: 'js'
-      } // 多进程打包 
+      
     },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader")
+        loader:  ExtractTextPlugin.extract("style-loader",'happypack/loader?id=styles') // 多进程打包 
       },
       {
         test: /\.svg$/,
