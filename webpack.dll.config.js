@@ -12,6 +12,7 @@ module.exports = {
     'moment',
         ]
   },
+  devtool: 'source-map',
   output:{
     filename:'[name].dll.js',
     path:path.resolve( __dirname, './dll' ),

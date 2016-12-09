@@ -43,7 +43,13 @@ module.exports = {
     }),
     new HappyPack({
       id: 'js',
-      threadPool: happyThreadPool
+      threadPool: happyThreadPool,
+      loaders: ['react-hot', 'babel?cacheDirectory=true'] // 加载器类型 react 热替换
+    }),
+    new HappyPack({
+      id: 'styles',
+      threadPool: happyThreadPool,
+      loaders: ['style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader']
     }),
     // dll 使用ETag 服务器端加缓存
     new webpack.DllReferencePlugin({
@@ -69,15 +75,12 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/, // 用正则表达式匹配文件格式
-      loaders: ['react-hot', 'babel'], // 加载器类型 react 热替换
-      include: path.join(__dirname, 'src'),
-      happy: {
-        id: 'js'
-      } // 多进程打包 
+      loaders: ['happypack/loader?id=js'], //多进程打包 
+      include: path.join(__dirname, 'src')
     },
       {
         test: /\.css$/,
-        loader: "style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader"
+        loaders:['happypack/loader?id=styles'], //多进程打包 
       },
       {
         test: /\.svg$/,
