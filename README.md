@@ -31,7 +31,10 @@
 * webpack-dev-middleware
 * webpack-dev-server
 * webpack-hot-middleware
-
+* chunk-manifest-webpack-plugin
+* inline-manifest-webpack-plugin
+* webpack-manifest-plugin
+* webpack-md5-hash
 
 # Introduction
 这个项目尽可能的使用webpack所有的优化建议来打包react代码，热加载，代码分割，dll等。开发和生产有两个配置文件，同学们可以不用纠结怎么配置webpack，开箱即用，查漏补缺也行。
