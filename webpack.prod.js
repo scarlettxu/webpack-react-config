@@ -4,6 +4,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+var ManifestPlugin = require('webpack-manifest-plugin');
+var ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
+var WebpackMd5Hash = require('webpack-md5-hash');
+var InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
 const HappyPack = require('happypack');
 const assetsPath = path.join(__dirname, 'dist');
 const happyThreadPool = HappyPack.ThreadPool({
@@ -27,12 +31,20 @@ module.exports = {
   // 文件打包结果
   output: {
     path: assetsPath, // 打包好的资源位置
-    filename: '[name].[chunkhash:8].js', // 这里的 name 对应入口文件里的值
-    chunkFilename: '[name].[chunkhash:8].chunk.js', // 这里 name 对应 为出现在入口文件的打包文件，如异步加载的子路由
+    filename: '[name].[chunkhash].js', // 这里的 name 对应入口文件里的值
+    chunkFilename: '[name].[chunkhash].chunk.js', // 这里 name 对应 为出现在入口文件的打包文件，如异步加载的子路由
     publicPath: '/', // 使用url-loader 加载资源的前缀 .比如图片的前缀使用cdn
   },
   plugins: [
-
+ new WebpackMd5Hash(),
+    new ManifestPlugin(),
+    // new ChunkManifestPlugin({
+    //   filename: "chunk-manifest.json",
+    //   manifestVariable: "webpackManifest"
+    // }),
+     new InlineManifestWebpackPlugin({
+        name: 'webpackManifest'
+    }),
     new CleanPlugin([assetsPath]),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"',
@@ -56,12 +68,11 @@ module.exports = {
     }),
     new CopyWebpackPlugin([{
       from: __dirname + '/dll',
-      to: assetsPath+ '/dll',
-      ignore: ['*.json']
+      to: assetsPath+'/dll',
+      ignore: ['*.json','*.html']
     }]),
     new webpack.optimize.CommonsChunkPlugin({
-      name: "commons",
-      filename: "[name].chunk.js",
+    names: ['commons', 'manifest']
     }),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -78,9 +89,8 @@ module.exports = {
 
     new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
       favicon: './public/favicon.ico', //favicon路径
-      chunks: ['app','commons'],
       filename: './index.html', //生成的html存放路径，相对于 path
-      template: './public/index.html', //html模板路径
+      template: './index.html', //html模板路径
       inject: true, //允许插件修改哪些内容，包括head与body
       hash: true, //为静态资源生成hash值
       minify: { //压缩HTML文件

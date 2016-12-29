@@ -51,16 +51,14 @@ module.exports = {
       threadPool: happyThreadPool,
       loaders: ['style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader']
     }),
-    // dll 使用ETag 服务器端加缓存
     new webpack.DllReferencePlugin({
       context: __dirname,
       manifest: require('./dll/vendor-manifest.json')
     }),
     new HtmlWebpackPlugin({ //根据模板插入css/js等生成最终HTML
       favicon: './public/favicon.ico', //favicon路径
-      chunks: ['app', 'commons'],
       filename: './index.html', //生成的html存放路径，相对于 path
-      template: './public/index.html', //html模板路径
+      template: './index.html', //html模板路径
       inject: true, //允许插件修改哪些内容，包括head与body
       hash: true, //为静态资源生成hash值
       minify: { //压缩HTML文件
