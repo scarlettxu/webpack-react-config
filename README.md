@@ -42,6 +42,8 @@
 可以先看一下[webpack](https://webpack.github.io/docs/?utm_source=github&utm_medium=readme&utm_campaign=trdr)文档的quick Getting Started guide，效果更佳，在本项目的配置文件里我也尽量加了注释。
 #Installation
     npm install
+#Running Webpack DLL
+	npm run dll (然后手动添加 <%=htmlWebpackPlugin.files.webpackManifest%> 到 index.html 的模板页面里)
 #Running Dev Server
     npm run dev
 #Running Production
