@@ -8,6 +8,7 @@
     "babel-loader": "^6.2.7",
     "clean-webpack-plugin": "^0.1.13",
     "copy-webpack-plugin": "^4.0.0",
+    "html-webpack-inline-chunk-plugin": "^1.0.0",
     "html-webpack-plugin": "^2.24.1"
   },
   "dependencies": {

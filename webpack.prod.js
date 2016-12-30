@@ -38,10 +38,6 @@ module.exports = {
   plugins: [
     new WebpackMd5Hash(),
     new ManifestPlugin(),
-    // new ChunkManifestPlugin({
-    //   filename: "chunk-manifest.json",
-    //   manifestVariable: "webpackManifest"
-    // }),
      new InlineManifestWebpackPlugin({
         name: 'webpackManifest'
     }),
@@ -73,7 +69,7 @@ module.exports = {
     }]),
    // 这里需要手动添加 <%=htmlWebpackPlugin.files.webpackManifest%> 到index.html 模板页面
     new webpack.optimize.CommonsChunkPlugin({
-    names: ['commons','manifest'],
+    names: ['commons','webpackManifest'],
     minChunks: 3,
     }),
     new webpack.NoErrorsPlugin(),

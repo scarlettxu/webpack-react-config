@@ -43,7 +43,7 @@
 #Installation
     npm install
 #Running Webpack DLL
-	npm run dll (然后手动添加 <%=htmlWebpackPlugin.files.webpackManifest%> 到 index.html 的模板页面里)
+	npm run dll 
 #Running Dev Server
     npm run dev
 #Running Production

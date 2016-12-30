@@ -1,10 +1,10 @@
-var webpack = require('webpack');
-var path = require('path');
-var ManifestPlugin = require('webpack-manifest-plugin');
-var ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
-var WebpackMd5Hash = require('webpack-md5-hash');
+const webpack = require('webpack');
+const path = require('path');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-var InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
+const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
 module.exports = {
   entry:{
     vendor: [ 
@@ -30,7 +30,6 @@ module.exports = {
       filename: '../index.html', //生成的html存放路径，相对于 path
       template: './public/index.html', //html模板路径
       inject: true, //允许插件修改哪些内容，包括head与body
-      // hash: true, //为静态资源生成hash值
     }),
          new InlineManifestWebpackPlugin({
         name: 'webpackManifest'
