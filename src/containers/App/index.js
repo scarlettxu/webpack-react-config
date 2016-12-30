@@ -1,5 +1,4 @@
 import React, { PureComponent, PropTypes } from 'react';
-
 const propTypes = {
   children: PropTypes.object.isRequired,
 };
@@ -9,7 +8,7 @@ class App extends PureComponent {
       <div>
         {this.props.children}
       </div>
-      );
+    );
   }
 }
 App.propTypes = propTypes;

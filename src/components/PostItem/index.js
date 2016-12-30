@@ -1,6 +1,5 @@
 import React, { PureComponent, PropTypes } from 'react';
 import styles from './PostItem.css';
-
 import moment from 'moment';
 const propTypes = {
   post: PropTypes.object.isRequired,
@@ -8,8 +7,8 @@ const propTypes = {
 class PostItem extends PureComponent {
   render() {
     const { avatar_url, create_at, loginname, recent_replies } = this.props.post;
-   moment.locale('zh-cn');
-     const createTime = moment(create_at).fromNow(); 
+    moment.locale('zh-cn');
+    const createTime = moment(create_at).fromNow();
     const list = recent_replies.map((item, index) => {
       return (
         <div key={index} className={styles.list}>

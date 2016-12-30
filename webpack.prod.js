@@ -36,7 +36,7 @@ module.exports = {
     publicPath: '/', // 使用url-loader 加载资源的前缀 .比如图片的前缀使用cdn
   },
   plugins: [
- new WebpackMd5Hash(),
+    new WebpackMd5Hash(),
     new ManifestPlugin(),
     // new ChunkManifestPlugin({
     //   filename: "chunk-manifest.json",
@@ -71,8 +71,10 @@ module.exports = {
       to: assetsPath+'/dll',
       ignore: ['*.json','*.html']
     }]),
+   // 这里需要手动添加 <%=htmlWebpackPlugin.files.webpackManifest%> 到index.html 模板页面
     new webpack.optimize.CommonsChunkPlugin({
-    names: ['commons', 'manifest']
+    names: ['commons','manifest'],
+    minChunks: 3,
     }),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -92,7 +94,6 @@ module.exports = {
       filename: './index.html', //生成的html存放路径，相对于 path
       template: './index.html', //html模板路径
       inject: true, //允许插件修改哪些内容，包括head与body
-      hash: true, //为静态资源生成hash值
       minify: { //压缩HTML文件
         removeComments: true, //移除HTML中的注释
         collapseWhitespace: true //删除空白符与换行符
